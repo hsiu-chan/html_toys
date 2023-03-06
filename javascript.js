@@ -54,6 +54,8 @@ $("#reset").on('click', function() {
     red_points=[];
     blue_points=[];
     console.log(`red:${red_points.length} blue:${blue_points.length}`);
+    $("#num").html(`red:${red_points.length} blue:${blue_points.length}`)
+
 });
 
 
@@ -78,8 +80,8 @@ $("canvas").click(function(e){
     }
     ctx.fillRect(xPos-2, yPos-2, 4,4);
 
-    $("#show").html(`x: ${xPos}, y: ${yPos}<br>
-    red:${red_points.length} blue:${blue_points.length}`);
+    $("#show").html(`x: ${xPos}, y: ${yPos}<br>`);
+    $("#num").html(`red:${red_points.length} blue:${blue_points.length}`)
   })
 
 
