@@ -78,7 +78,7 @@ $("canvas").click(function(e){
     }
     ctx.fillRect(xPos-2, yPos-2, 4,4);
 
-    $("#show").text(`x: ${xPos}, y: ${yPos}, color: ${color}`);
+    $("#show").text(`x: ${xPos}, y: ${yPos}, red:${red_points.length} blue:${blue_points.length}`);
   })
 
 
