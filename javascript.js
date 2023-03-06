@@ -78,33 +78,9 @@ $("canvas").click(function(e){
     }
     ctx.fillRect(xPos-2, yPos-2, 4,4);
 
-    $("#show").text(`x: ${xPos}, y: ${yPos}, red:${red_points.length} blue:${blue_points.length}`);
+    $("#show").html(`x: ${xPos}, y: ${yPos}<br>
+    red:${red_points.length} blue:${blue_points.length}`);
   })
 
 
-const loadSVM = require('./  libsvm-master/src/loadSVM');
-const libsvm = require('./  libsvm-master/out/asm/libsvm');
-
-module.exports = loadSVM(libsvm);
-async function xor() {
-    const SVM = await
-    require('./  libsvm-master/out/asm/libsvm');
-    const svm = new SVM({
-        kernel: SVM.KERNEL_TYPES.RBF, // The type of kernel I want to use
-        type: SVM.SVM_TYPES.C_SVC,    // The type of SVM I want to run
-        gamma: 1,                     // RBF kernel gamma parameter
-        cost: 1                       // C_SVC cost parameter
-    });
-
-    // This is the xor problem
-    //
-    //  1  0
-    //  0  1
-    const features = [[0, 0], [1, 1], [1, 0], [0, 1]];
-    const labels = [0, 0, 1, 1];
-    svm.train(features, labels);  // train the model
-    const predictedLabel = svm.predictOne([0.7, 0.8]);
-    console.log(predictedLabel) // 0
-}
-
-xor().then(() => console.log('done!'));
+//////////////////////////////////

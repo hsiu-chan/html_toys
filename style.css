@@ -1,18 +1,22 @@
 .container{
-    display: flex;
-    justify-content: center;
-  }
-  .box{
-    width: 200px;
-    height: 200px;
-    background: red;
-    position:relative;
-  }
-  .text-center{
-    text-align: center;
-    padding: 10px 0;
-  }
+  display: flex;
+  margin: 20pt;
+  justify-content: center; 
 
+}
+.box{
+  width: 200px;
+  height: 200px;
+  background: red;
+  position:relative;
+}
+.text-center{
+  text-align: center;
+  padding: 10px 0;
+}
+#canvas{
+  left: auto;
+}
 #reset{
     border: none;
     color: white;
