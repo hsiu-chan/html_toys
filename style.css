@@ -17,7 +17,7 @@
 #canvas{
   left: auto;
 }
-#reset{
+/*#reset{
     border: none;
     color: white;
     padding: 15px 32px;
@@ -31,6 +31,10 @@
     -webkit-filter:brightness(.5);
 
 }
+#download:active{
+  -webkit-filter:brightness(.5);
+
+}*/
 
 .btm {
     /*background-color: #4CAF50; /* Green */
@@ -41,8 +45,18 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    -webkit-filter:brightness(.5);
 }
-.now{
-    -webkit-filter:brightness(1);
+
+.btm:active{
+  -webkit-filter:brightness(0.5);
+
+}
+
+.rb{
+  -webkit-filter:brightness(0.5)!important;
+
+}
+
+.rb.now{
+  -webkit-filter:brightness(1)!important;
 }

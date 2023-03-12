@@ -30,9 +30,9 @@ ctx.fill()*/
 
 ///////////btm css/////////////
 
-var btms=$(".btm");
-$(btms).on('click', function() {
-    $(btms).removeClass('now');
+var rb=$(".rb");
+$(rb).on('click', function() {
+    $(rb).removeClass('now');
     $(this).addClass('now');
 });
 
