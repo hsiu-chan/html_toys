@@ -86,3 +86,46 @@ $("canvas").click(function(e){
 
 
 //////////////////////////////////
+
+$("#download").click(function(e){
+    var points = {
+        red:red_points,
+        blue:blue_points
+    }
+    str = JSON.stringify(points, null, 2);
+    console.log(str);
+    const dataUrl = `data:,${str}`
+    Download(dataUrl, 'test.json');
+    
+
+})
+
+function Download (url, name) {
+    const a = document.createElement('a')
+    a.download = name
+    a.rel = 'noopener'
+    a.href = url
+    // 触发模拟点击
+    a.dispatchEvent(new MouseEvent('click'))
+    // 或者 a.click()
+}
+  
+function saveJSON(data, filename){
+    if(!data) {
+        alert('保存的数据为空');
+        return;
+    }
+    if(!filename) 
+        filename = 'json.json'
+    if(typeof data === 'object'){
+        data = JSON.stringify(data, undefined, 4)
+    }
+    var blob = new Blob([data], {type: 'text/json'}),
+    e = document.createEvent('MouseEvents'),
+    a = document.createElement('a')
+    a.download = filename
+    a.href = window.URL.createObjectURL(blob)
+    a.dataset.downloadurl = ['text/json', a.download, a.href].join(':')
+    e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
+    a.dispatchEvent(e)
+}
