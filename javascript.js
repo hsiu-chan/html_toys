@@ -7,13 +7,15 @@ let ctx = canvas.getContext("2d");
 //讓canvas的高度和寬度等於整個畫面，讓整個視窗都是你的畫布
 canvas.height = window.innerHeight/2;
 canvas.width = window.innerHeight/2;
-ctx.fillStyle = "black";
+fillStyle = "black";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 //在繪製任何東西之前，我們都要來個開始，像全天下所有的故事一樣
 ctx.beginPath();
 //我們用moveTo(x,y)來指定線的起點座標
-ctx.moveTo(50,50)
+  
+
+
 //之後使用lineTo(x,y)來指定與前一個座標相連的
 /*ctx.fillStyle = "#000000"
 ctx.lineTo(250,50)
@@ -39,8 +41,11 @@ $(rb).on('click', function() {
 ///////////btm act/////////////
 
 let color=1;
-let red_points=[];
-let blue_points=[];
+let red_points=0;
+let blue_points=0;
+let points=[];
+let tp=[];
+
 $("#red").on('click', function() {
     color=1;
 });
@@ -51,10 +56,12 @@ $("#blue").on('click', function() {
 $("#reset").on('click', function() {
     ctx.fillStyle = "#000000";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    red_points=[];
-    blue_points=[];
-    console.log(`red:${red_points.length} blue:${blue_points.length}`);
-    $("#num").html(`red:${red_points.length} blue:${blue_points.length}`)
+    red_points=0;
+    blue_points=0;
+    points=[];
+    tp=[]
+    console.log(`red:${red_points} blue:${blue_points}`);
+    $("#num").html(`red:${red_points} blue:${blue_points}`)
 
 });
 
@@ -68,13 +75,17 @@ $("canvas").click(function(e){
     switch(color){
         case 1:
             ctx.fillStyle = "#ff0000";
-            red_points.push([xPos,yPos]);
-            console.log(`red:${red_points.length} blue:${blue_points.length}`);
+            points.push([xPos,yPos,25]);
+            tp.push(1);
+            red_points+=1;
+            console.log(`red:${red_points} blue:${blue_points}`);
             break;
         case 2:
             ctx.fillStyle = "#0000ff";
-            blue_points.push([xPos,yPos]);
-            console.log(`red:${red_points.length} blue:${blue_points.length}`);
+            points.push([xPos,yPos,25]);
+            tp.push(-1);
+            blue_points+=1;
+            console.log(`red:${red_points} blue:${blue_points}`);
             break;
 
     }
@@ -110,22 +121,63 @@ function Download (url, name) {
     // 或者 a.click()
 }
   
-function saveJSON(data, filename){
-    if(!data) {
-        alert('保存的数据为空');
-        return;
+
+
+
+/////////////////
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+$("#line").click(function(e){
+    let p_num=points.length;
+    let w=[9,-200,0];
+    let correct=0;
+    //a_line(w);
+
+    while(correct<p_num*4){
+        id=getRandomInt(p_num);
+
+
+        side=0;
+        for (let i=0;i<3;i++){
+            side+=points[id][i]*w[i];
+        }
+        if (side*tp[id]>0){
+            correct=correct+1;
+            console.log(w,points[id],tp[id],correct);
+            continue
+        }
+
+        correct=0;
+        //upd
+        for (let i=0;i<3;i++){
+            w[i]+=points[id][i]*tp[id]/10;
+        }
     }
-    if(!filename) 
-        filename = 'json.json'
-    if(typeof data === 'object'){
-        data = JSON.stringify(data, undefined, 4)
+
+    
+
+    console.log(w);
+    a_line(w);
+    
+     
+})
+
+
+function a_point(x,y){
+    ctx.fillStyle = "#00ff00";
+    ctx.fillRect(x-2, y-2, 4,4);
+}
+
+function a_line(w){
+    function x_to_y(x){
+        return (-w[0]*x-w[2]*25)/w[1];
     }
-    var blob = new Blob([data], {type: 'text/json'}),
-    e = document.createEvent('MouseEvents'),
-    a = document.createElement('a')
-    a.download = filename
-    a.href = window.URL.createObjectURL(blob)
-    a.dataset.downloadurl = ['text/json', a.download, a.href].join(':')
-    e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
-    a.dispatchEvent(e)
+    ctx.strokeStyle = "#00ff00";
+    ctx.beginPath();   
+    ctx.moveTo(0,x_to_y(0));
+    ctx.lineTo(400,x_to_y(400));  
+    ctx.stroke();
+ 
 }
