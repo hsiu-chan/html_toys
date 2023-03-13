@@ -1,7 +1,7 @@
 ///////爬取目錄/////////////
 const notes_url ='https://api.github.com/repos/hsiu-chan/notebook/contents/notes';
 
-$.get(notes_url,   
+/*$.get(notes_url,   
   function(dir){
   //let num=0;
     let dir_id=0;
@@ -41,7 +41,7 @@ $.get(notes_url,
       }
 
   });
-}, 'json');
+}, 'json');*/
 
 /////側邊目錄收合////////////
 var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
