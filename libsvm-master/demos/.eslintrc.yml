@@ -1,4 +1,0 @@
-extends: eslint-config-neptun-react
-rules:
-  no-console: 2
-  import/no-unassigned-import: 0
