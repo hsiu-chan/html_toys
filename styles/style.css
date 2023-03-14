@@ -321,3 +321,40 @@ footer {
 .btn:active {
   opacity: 0.8;
 }
+
+.card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 10em;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #fc00ff, #00dbde);
+  box-shadow: 0 0 20px 1px Gray;
+}
+.card:hover{
+  -webkit-filter: brightness(.5);
+}
+.card a{
+  color: white;
+}
+.card a:hover{
+  color: white;
+}
+.card-title {
+  color: white;
+  text-align: center;
+  line-height: 2;
+  font-size: 32px;
+  text-shadow: 0 0 2px Lightgray;
+}
+.card-txt {
+  color: WhiteSmoke;
+  height: 80%;
+  width: 100%;
+  overflow: auto;
+  line-height: 32px;
+}
